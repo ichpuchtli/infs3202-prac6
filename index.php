@@ -1,5 +1,7 @@
 <?php
 	
+session_start();
+
 date_default_timezone_set("Australia/Brisbane");
 
 $host = "au-cdbr-azure-east-a.cloudapp.net";
@@ -18,11 +20,17 @@ if($hits == false){
 	$hits = 0;
 } 
 
+if(!isset($_SESSION['first'])){
+
 $hits += 1;
 
 $sql = 'update hits set counter=' . $hits;
 
 $conn->query($sql);
+
+}
+
+$_SESSION['first'] = false;
 
 ?>
 
